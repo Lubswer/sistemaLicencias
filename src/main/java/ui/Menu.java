@@ -1,41 +1,39 @@
 package ui;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class Analista extends JFrame {
-    private JButton registrarSolicitanteButton;
-    private JButton verificarRequisitosButton;
-    private JButton registrarExámenesButton;
-    private JButton gestiónDeTrámitesButton;
-    private JButton generarLicenciaButton;
-    private JButton cerrarSesiónButton;
+public class Menu extends JFrame {
+    private JPanel PanelAn;
+    private JPanel menu;
+    private JButton SolicitanteButton;
+    private JButton cerrarButton;
+    private JButton ExamenesButton;
+    private JButton TramitesButton;
+    private JButton UsuariosButton;
+    private JButton EstadisticasButton;
+    private JButton RequisitosButton;
+    private JButton LicenciaButton;
+    private JLabel icono1;
+    private JLabel icono2;
     private JLabel RegS;
     private JLabel VerR;
     private JLabel RegE;
     private JLabel Gestr;
     private JLabel GenLic;
+    private JLabel GesUs;
+    private JLabel ReEs;
     private JLabel CeSe;
-    private JLabel user;
-    private JLabel icono1;
-    private JLabel icono2;
-    private JPanel PanelAn;
     private JPanel encabezado;
-    private JPanel pane;
-    private JTextField textField2;
-    private JTextField textField5;
-    private JTextField textField1;
-    private JTextField textField6;
-    private JTextField textField3;
-    private JTextField textField4;
+    private JLabel user;
 
-    public Analista() {
-        setSize(1300, 720);
-        setVisible(true);
-
+    public Menu() {
         setContentPane(PanelAn);
         setTitle("INGRESO SISTEMA DE ENTREGA DE LICENCIAS");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1300, 720);
+        setVisible(true);
         ImageIcon regSolicitante = new ImageIcon(getClass().getResource("/img/1.png"));
         RegS.setIcon(regSolicitante);
         ImageIcon verRegistro = new ImageIcon(getClass().getResource("/img/2.png"));
@@ -50,10 +48,15 @@ public class Analista extends JFrame {
         CeSe.setIcon(cerrar);
         ImageIcon usuario = new ImageIcon(getClass().getResource("/img/usuario.png"));
         user.setIcon(usuario);
-        ImageIcon iconop = new ImageIcon(getClass().getResource("/img/7.png"));
-        icono1.setIcon(iconop);
+        ImageIcon ico = new ImageIcon(getClass().getResource("/img/7.png"));
+        icono1.setIcon(ico);
         ImageIcon iconopp = new ImageIcon(getClass().getResource("/img/6.png"));
         icono2.setIcon(iconopp);
+        ImageIcon gesus = new ImageIcon(getClass().getResource("/img/8.png"));
+        GesUs.setIcon(gesus);
+        ImageIcon rees = new ImageIcon(getClass().getResource("/img/9.png"));
+        ReEs.setIcon(rees);
+
 
     }
 }

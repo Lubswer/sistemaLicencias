@@ -1,9 +1,9 @@
 import ui.LoginFrame;
-import ui.Analista;
-import ui.Administrador;
+
+import ui.Menu;
 public class Main {
     public static void main(String[] args){
-        new Administrador();
+        new Menu();
 
     }
 }
