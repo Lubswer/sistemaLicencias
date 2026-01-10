@@ -1,7 +1,11 @@
 package ui;
 import model.Usuario;
+import ui.panels.*;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Menu extends JFrame {
     private Usuario usuarioLogueado;
@@ -27,6 +31,8 @@ public class Menu extends JFrame {
     private JLabel CeSe;
     private JPanel encabezado;
     private JLabel user;
+    private JPanel panelCentral;
+    private JPanel panelCambio;
 
     public Menu(Usuario usuarioLogueado) {
         setContentPane(PanelAn);
@@ -74,8 +80,14 @@ public class Menu extends JFrame {
         TramitesButton.setBorder(
                 BorderFactory.createMatteBorder(0, 0, 2, 3, Color.white)
         );
-
         visibilidad();
+
+        SolicitanteButton.addActionListener( e -> {
+            cambiarPanelCentral(new RegistrarSolicitantePanel());
+        });
+
+
+
     }
     protected void visibilidad(){
         //para que se oculten los botones que son para el admin
@@ -84,6 +96,13 @@ public class Menu extends JFrame {
         EstadisticasButton.setVisible(false);
         ReEs.setVisible(false);
 
+    }
+    protected void cambiarPanelCentral(JPanel nuevoPanel) {
+        panelCentral.removeAll();              // quita lo anterior
+        panelCentral.setLayout(new BorderLayout());
+        panelCentral.add(nuevoPanel, BorderLayout.CENTER);
+        panelCentral.revalidate();              // recalcula layout
+        panelCentral.repaint();                 // repinta
     }
 
 }
