@@ -97,7 +97,9 @@ public class Menu extends JFrame {
         UsuariosButton.addActionListener(e -> {
             cambiarPanelCentral(new GestionUsuariosPanel());
         });
-
+        TramitesButton.addActionListener(e -> {
+            cambiarPanelCentral(new GestionTramitesPanel());
+        });
 
     }
     protected void visibilidad(){
