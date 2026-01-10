@@ -13,6 +13,8 @@ public class RegistrarExamenesPanel extends JPanel {
     private JButton guardarResultadosButton;
     private JPanel guardar;
     private JLabel imagen;
+    private JButton buscarButton;
+    private JLabel lupa;
 
     public RegistrarExamenesPanel(){
         setLayout(new BorderLayout());
@@ -23,7 +25,10 @@ public class RegistrarExamenesPanel extends JPanel {
         practica.setPreferredSize(new Dimension(60,30));
         teoria.setPreferredSize(new Dimension(60,30));
         cedula.setPreferredSize(new Dimension(60,30));
+        busqueda.setPreferredSize(new Dimension(900,200));
         ImageIcon rex = new ImageIcon(getClass().getResource("/img/Rexamenes.png"));
         imagen.setIcon(rex);
+        ImageIcon lupita = new ImageIcon(getClass().getResource("/img/lupa.png"));
+        lupa.setIcon(lupita);
     }
 }
