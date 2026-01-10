@@ -10,8 +10,8 @@ public class Menu extends JFrame {
     private JButton cerrarButton;
     private JButton ExamenesButton;
     private JButton TramitesButton;
-    private JButton UsuariosButton;
-    private JButton EstadisticasButton;
+    protected JButton UsuariosButton;
+    protected JButton EstadisticasButton;
     private JButton RequisitosButton;
     private JButton LicenciaButton;
     private JLabel icono1;
@@ -21,8 +21,8 @@ public class Menu extends JFrame {
     private JLabel RegE;
     private JLabel Gestr;
     private JLabel GenLic;
-    private JLabel GesUs;
-    private JLabel ReEs;
+    protected JLabel GesUs;
+    protected JLabel ReEs;
     private JLabel CeSe;
     private JPanel encabezado;
     private JLabel user;
@@ -57,6 +57,15 @@ public class Menu extends JFrame {
         ImageIcon rees = new ImageIcon(getClass().getResource("/img/9.png"));
         ReEs.setIcon(rees);
 
+        visibilidad();
+    }
+    protected void visibilidad(){
+        //para que se oculten los botones que son para el admin
+        UsuariosButton.setVisible(false);
+        GesUs.setVisible(false);
+        EstadisticasButton.setVisible(false);
+        ReEs.setVisible(false);
 
     }
+
 }
