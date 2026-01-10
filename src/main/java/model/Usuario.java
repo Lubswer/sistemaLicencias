@@ -10,6 +10,7 @@ public class Usuario {
     private String rol;       // "ADMIN" | "ANALISTA"
     private String estado;    // "ACTIVO" | "INACTIVO"
 
+    public Usuario(){}
     // 1️⃣ Constructor para CREAR usuario (sin id)
     public Usuario(String nombre,
                    String cedula,
