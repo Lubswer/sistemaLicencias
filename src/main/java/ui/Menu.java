@@ -85,12 +85,10 @@ public class Menu extends JFrame {
         SolicitanteButton.addActionListener( e -> {
             cambiarPanelCentral(new RegistrarSolicitantePanel());
         });
-        RequisitosButton.addActionListener(e -> {
-            cambiarPanelCentral(new VerificarRequisitosPanel());
+        LicenciaButton.addActionListener(e -> {
+            cambiarPanelCentral(new GenerarLicenciaPanel());
         });
-        ExamenesButton.addActionListener(e -> {
-            cambiarPanelCentral(new RegistrarExamenesPanel());
-        });
+
 
 
     }
