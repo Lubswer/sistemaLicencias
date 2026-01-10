@@ -1,7 +1,12 @@
 package ui;
 
+import model.Usuario;
+import service.AutenticacionService;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame{
 
@@ -38,6 +43,25 @@ public class LoginFrame extends JFrame{
                 BorderFactory.createMatteBorder(0, 0, 2, 0, Color.GRAY)
         );
 
+        iniciarSesionButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                String nombre = textField1.getText();
+                String clave = new String(passwordField1.getPassword());
+                try {
+                    Usuario usuario = AutenticacionService.login(nombre,clave);
+
+                    if (usuario.esAdmin()) {
+                        new MenuAdmin(usuario).setVisible(true);
+                    } else {
+                        new Menu(usuario).setVisible(true);
+                    }
+                    dispose();
+                } catch (IllegalArgumentException iae) {
+                    JOptionPane.showMessageDialog(null, iae.getMessage());
+                }
+            }
+
+        });
     }
 
 

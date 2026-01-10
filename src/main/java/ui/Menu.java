@@ -1,9 +1,10 @@
 package ui;
-
+import model.Usuario;
 import javax.swing.*;
 import java.awt.*;
 
 public class Menu extends JFrame {
+    private Usuario usuarioLogueado;
     private JPanel PanelAn;
     private JPanel menu;
     private JButton SolicitanteButton;
@@ -27,13 +28,12 @@ public class Menu extends JFrame {
     private JPanel encabezado;
     private JLabel user;
 
-    public Menu() {
+    public Menu(Usuario usuarioLogueado) {
         setContentPane(PanelAn);
         setTitle("INGRESO SISTEMA DE ENTREGA DE LICENCIAS");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1300, 720);
-        setVisible(true);
         ImageIcon regSolicitante = new ImageIcon(getClass().getResource("/img/1.png"));
         RegS.setIcon(regSolicitante);
         ImageIcon verRegistro = new ImageIcon(getClass().getResource("/img/2.png"));
@@ -56,6 +56,24 @@ public class Menu extends JFrame {
         GesUs.setIcon(gesus);
         ImageIcon rees = new ImageIcon(getClass().getResource("/img/9.png"));
         ReEs.setIcon(rees);
+        SolicitanteButton.setBorder(
+                BorderFactory.createMatteBorder(0, 0, 2, 3, Color.white)
+        );
+        cerrarButton.setBorder(
+                BorderFactory.createMatteBorder(0, 0, 2, 3, Color.white)
+        );
+        ExamenesButton.setBorder(
+                BorderFactory.createMatteBorder(0, 0, 2, 3, Color.white)
+        );
+        RequisitosButton.setBorder(
+                BorderFactory.createMatteBorder(0, 0, 2, 3, Color.white)
+        );
+        LicenciaButton.setBorder(
+                BorderFactory.createMatteBorder(0, 0, 2, 3, Color.white)
+        );
+        TramitesButton.setBorder(
+                BorderFactory.createMatteBorder(0, 0, 2, 3, Color.white)
+        );
 
         visibilidad();
     }
