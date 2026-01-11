@@ -88,8 +88,18 @@ public class Menu extends JFrame {
         LicenciaButton.addActionListener(e -> {
             cambiarPanelCentral(new GenerarLicenciaPanel());
         });
-
-
+        RequisitosButton.addActionListener(e -> {
+            cambiarPanelCentral(new VerificarRequisitosPanel());
+        });
+        ExamenesButton.addActionListener(e -> {
+            cambiarPanelCentral(new RegistrarExamenesPanel());
+        });
+        UsuariosButton.addActionListener(e -> {
+            cambiarPanelCentral(new GestionUsuariosPanel());
+        });
+        TramitesButton.addActionListener(e -> {
+            cambiarPanelCentral(new GestionTramitesPanel());
+        });
 
     }
     protected void visibilidad(){
