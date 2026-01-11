@@ -61,7 +61,55 @@ public class TramiteService {
         return tramiteRescatado;
 
     }
-    public static void generarLicencia(int idTramite,String numeroLicencia, String fechaEmision, String fechaVencimiento,int usarioLogueado){
+    public static void generarLicencia(int idTramite,String numeroLicencia, String fechaEmision, String fechaVencimiento,int usuarioLogueado){
+        //  Validar id del trámite
+        if (idTramite <= 0) {
+            throw new IllegalArgumentException("Trámite inválido");
+        }
+
+        //  Validar número de licencia
+        if (numeroLicencia == null || numeroLicencia.isBlank()) {
+            throw new IllegalArgumentException("El número de licencia es obligatorio");
+        }
+
+        //  Validar fecha de emisión
+        if (fechaEmision == null || fechaEmision.isBlank()) {
+            throw new IllegalArgumentException("La fecha de emisión es obligatoria");
+        }
+
+        //  Validar fecha de vencimiento
+        if (fechaVencimiento == null || fechaVencimiento.isBlank()) {
+            throw new IllegalArgumentException("La fecha de vencimiento es obligatoria");
+        }
+
+        //  Validar formato de fechas (yyyy-MM-dd)
+        LocalDate emision;
+        LocalDate vencimiento;
+
+        try {
+            emision = LocalDate.parse(fechaEmision);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Formato de fecha de emisión inválido");
+        }
+
+        try {
+            vencimiento = LocalDate.parse(fechaVencimiento);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Formato de fecha de vencimiento inválido");
+        }
+
+        //  Validar coherencia de fechas
+        if (!vencimiento.isAfter(emision)) {
+            throw new IllegalArgumentException(
+                    "La fecha de vencimiento debe ser posterior a la fecha de emisión"
+            );
+        }
+
+        //  Validar usuario logueado
+        if (usuarioLogueado <= 0) {
+            throw new IllegalArgumentException("Usuario no válido para generar licencia");
+        }
+
 
     }
 
