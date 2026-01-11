@@ -50,6 +50,7 @@ public class Tramite {
         this.createdAt = createdAt;
     }
 
+
     // Getters
     public int getIdTramite() {
         return idTramite;
@@ -98,4 +99,72 @@ public class Tramite {
     public String getCreatedAt() {
         return createdAt;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public Tramite(int idTramite, String estado) {
+        this.idTramite = idTramite;
+        this.estado = estado;
+    }
+
 }

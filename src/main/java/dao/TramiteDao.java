@@ -102,4 +102,372 @@ public class TramiteDao {
 
         return null; // no existe trámite para ese solicitante
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static void requisitos(int idTramite,boolean CMedico,boolean PRealizado,boolean SMultas,String observaciones,String nuevoEstado) {
+        String sql = " UPDATE tramite SET certificado_medico = ?, pago_ok = ?, multas_ok = ?, observaciones = ?,estado = ? WHERE id_tramite = ?";
+
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setBoolean(1, CMedico);
+            ps.setBoolean(2, PRealizado);
+            ps.setBoolean(3, SMultas);
+            ps.setString(4, observaciones);
+            ps.setString(5, nuevoEstado);
+            ps.setInt(6, idTramite);
+
+            ps.executeUpdate();
+
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+    }
+    public static void actualizarExamenes(int idTramite,double teoria,double practica, String estado){
+        String sql="UPDATE tramite SET nota_teorica =?,nota_practica=?,estado=? WHERE id_tramite=?";
+        try(Connection conn=ConexionDB.getConnection();
+            PreparedStatement ps= conn.prepareStatement(sql)){
+            ps.setDouble(1, teoria);
+            ps.setDouble(2, practica);
+            ps.setString(3, estado);
+            ps.setInt(4, idTramite);
+            ps.executeUpdate();
+        }catch(SQLException milk){
+            milk.printStackTrace();
+        }
+    }
+
+
+    public static Tramite obtenerTramiteEnExamenes(int idSolicitante) {
+        String sql = "SELECT * FROM tramite WHERE id_solicitante = ? AND estado = 'EN_EXAMENES'";
+
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idSolicitante);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Tramite(
+                        rs.getInt("id_tramite"),
+                        rs.getString("estado")
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
