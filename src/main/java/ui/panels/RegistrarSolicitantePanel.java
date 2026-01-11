@@ -1,7 +1,11 @@
 package ui.panels;
+import model.Usuario;
+import service.TramiteService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class RegistrarSolicitantePanel extends JPanel {
 
@@ -15,7 +19,7 @@ public class RegistrarSolicitantePanel extends JPanel {
     private JButton guardarBTN;
     private JButton limpiarBTN;
 
-    public RegistrarSolicitantePanel(){
+    public RegistrarSolicitantePanel(Usuario usuario){
         setLayout(new BorderLayout());
         panelRegistro.setPreferredSize(new Dimension(900, 600));
         add(panelRegistro, BorderLayout.CENTER);
@@ -31,6 +35,22 @@ public class RegistrarSolicitantePanel extends JPanel {
         fechaTF.setBorder(
                 BorderFactory.createMatteBorder(0, 0, 2, 0, Color.GRAY)
         );
+
+        guardarBTN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String cedula = cedulaTF.getText();
+                String nombre = nombreTF.getText();
+                String fechaN = fechaTF.getText();
+                String licencia = tipoLicencia.getSelectedItem().toString();
+                try{
+                    TramiteService.solicitante(cedula, nombre, fechaN, licencia, usuario);
+                    JOptionPane.showMessageDialog(null,"Usuario Registrado Correctamente");
+                }catch (IllegalArgumentException iae){
+                    JOptionPane.showMessageDialog(null,iae.getMessage());
+                }
+            }
+        });
 
 
 

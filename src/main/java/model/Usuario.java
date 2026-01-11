@@ -13,7 +13,7 @@ public class Usuario {
 
     public Usuario(){}
 
-    // 1️⃣ Constructor para CREAR usuario (sin id)
+    //  Constructor para CREAR usuario (sin id)
     public Usuario(String nombre,
                    String cedula,
                    String username,

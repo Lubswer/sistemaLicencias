@@ -1,4 +1,5 @@
 package ui;
+import model.Solicitante;
 import model.Usuario;
 import ui.panels.*;
 
@@ -83,8 +84,11 @@ public class Menu extends JFrame {
         visibilidad();
 
         SolicitanteButton.addActionListener( e -> {
-            cambiarPanelCentral(new RegistrarSolicitantePanel());
+            cambiarPanelCentral(new RegistrarSolicitantePanel(usuarioLogueado));
         });
+
+
+
         LicenciaButton.addActionListener(e -> {
             cambiarPanelCentral(new GenerarLicenciaPanel());
         });

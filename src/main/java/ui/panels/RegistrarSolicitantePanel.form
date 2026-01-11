@@ -118,7 +118,7 @@
             <properties>
               <font size="16"/>
               <foreground color="-12631739"/>
-              <text value="Fecha de nacimiento (dd-mm-aa):"/>
+              <text value="Fecha de nacimiento (aaaa-mm-dd):"/>
             </properties>
           </component>
           <component id="5f230" class="javax.swing.JTextField" binding="fechaTF">
