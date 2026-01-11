@@ -17,6 +17,7 @@ public class GestionUsuariosPanel extends JPanel{
     private JPanel panelsito;
     private JTable tablaUsuarios;
     private JPanel tablaa;
+    private JButton limpiarButton;
     private DefaultTableModel modeloTabla;
     public GestionUsuariosPanel(){
         UsuariosPanel.setPreferredSize(new Dimension(900,600));
