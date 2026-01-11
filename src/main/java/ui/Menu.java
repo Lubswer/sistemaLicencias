@@ -88,6 +88,7 @@ public class Menu extends JFrame {
         LicenciaButton.addActionListener(e -> {
             cambiarPanelCentral(new GenerarLicenciaPanel());
         });
+<<<<<<< Updated upstream
         RequisitosButton.addActionListener(e -> {
             cambiarPanelCentral(new VerificarRequisitosPanel());
         });
@@ -100,6 +101,13 @@ public class Menu extends JFrame {
         TramitesButton.addActionListener(e -> {
             cambiarPanelCentral(new GestionTramitesPanel());
         });
+=======
+        EstadisticasButton.addActionListener(e -> {
+            cambiarPanelCentral(new ReportesEstadisticasPanel());
+        });
+
+
+>>>>>>> Stashed changes
 
     }
     protected void visibilidad(){
