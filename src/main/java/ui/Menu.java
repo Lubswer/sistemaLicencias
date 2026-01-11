@@ -85,17 +85,17 @@ public class Menu extends JFrame {
         );
         visibilidad();
 
+        usuarioIngresado.setText("Usuario: " + usuarioLogueado.getNombre());
+
         SolicitanteButton.addActionListener( e -> {
             cambiarPanelCentral(new RegistrarSolicitantePanel(usuarioLogueado));
             panelOption.setText("Panel Principal / Registrar Solicitante");
         });
 
-        usuarioIngresado.setText("Usuario: " + usuarioLogueado.getNombre());
-
-
 
         LicenciaButton.addActionListener(e -> {
-            cambiarPanelCentral(new GenerarLicenciaPanel());
+            cambiarPanelCentral(new GenerarLicenciaPanel(usuarioLogueado));
+            panelOption.setText("Panel Principal / Generar Licencia");
         });
 
         RequisitosButton.addActionListener(e -> {

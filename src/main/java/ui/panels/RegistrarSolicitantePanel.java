@@ -46,8 +46,14 @@ public class RegistrarSolicitantePanel extends JPanel {
                 try{
                     TramiteService.solicitante(cedula, nombre, fechaN, licencia, usuario);
                     JOptionPane.showMessageDialog(null,"Usuario Registrado Correctamente");
-                }catch (IllegalArgumentException iae){
+                }
+                catch (NumberFormatException nep){
+                    JOptionPane.showMessageDialog(null, "Formato de datos incorrecto");
+                }
+                catch (IllegalArgumentException iae){
                     JOptionPane.showMessageDialog(null,iae.getMessage());
+                }catch (Exception  ex ){
+                    JOptionPane.showMessageDialog(null,"Error inesperado: " + ex.getMessage());
                 }
             }
         });

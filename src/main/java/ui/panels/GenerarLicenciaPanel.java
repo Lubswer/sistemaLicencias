@@ -1,6 +1,13 @@
 package ui.panels;
+import model.Solicitante;
+import model.Tramite;
+import model.Usuario;
+import service.TramiteService;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GenerarLicenciaPanel extends JPanel {
     private JPanel panelGenerarLicencia;
@@ -21,8 +28,9 @@ public class GenerarLicenciaPanel extends JPanel {
     private JLabel numeroLicenciaLB;
     private JLabel fechaEmisionLB;
     private JLabel fechaVencimientoLB;
+    private JLabel estado;
 
-    public GenerarLicenciaPanel(){
+    public GenerarLicenciaPanel(Usuario usuarioLogueado){
         setLayout(new BorderLayout());
         panelGenerarLicencia.setPreferredSize(new Dimension(900, 600));
         add(panelGenerarLicencia, BorderLayout.CENTER);
@@ -30,5 +38,33 @@ public class GenerarLicenciaPanel extends JPanel {
         iconLicencia.setIcon(iconoLicencia);
         ImageIcon iconLupa = new ImageIcon(getClass().getResource("/img/lupa.png"));
         iconBuscar.setIcon(iconLupa );
+
+        buscarBTN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String cedula = cedulaBuscar.getText();
+                try{
+                    Solicitante solicitante1 = TramiteService.buscarPorCedula(cedula);
+                    Tramite tramiteSolicitante = TramiteService.obtenerTramiteSolicitante(solicitante1.getIdSolicitante());
+                    JOptionPane.showMessageDialog(null,"Solicitante encontrado y cargado");
+                    nombreLB.setText("Nombre: " + solicitante1.getNombreSolicitante());
+                    cedulaLB.setText("Cédula: " + solicitante1.getCedulaSolicitante());
+                    tipoLicenciaLB.setText("Tipo Licencia: " + tramiteSolicitante.getTipoLicencia());
+                    estado.setText(tramiteSolicitante.getEstado());
+                    fechaSolicitudLB.setText("Fecha Solicitud: " + tramiteSolicitante.getCreatedAt());
+
+                }
+                catch (NumberFormatException nep){
+                    JOptionPane.showMessageDialog(null, "Formato de datos incorrecto");
+                }
+                catch (IllegalArgumentException iae){
+                    JOptionPane.showMessageDialog(null,iae.getMessage());
+                }catch (Exception  ex ){
+                    JOptionPane.showMessageDialog(null,"Error inesperado: " + ex.getMessage());
+                }
+
+            }
+        });
+
     }
 }

@@ -2,6 +2,7 @@ package service;
 import dao.*;
 import dao.UsuarioDao;
 import model.Solicitante;
+import model.Tramite;
 import model.Usuario;
 
 import java.time.LocalDate;
@@ -11,6 +12,8 @@ public class TramiteService {
     public static void solicitante(String cedula, String nombre, String fechaN, String licencia, Usuario usuario){
         if (cedula == null || cedula.isBlank())
             throw new IllegalArgumentException("La cédula es obligatoria");
+        int cedulaNum = convertirTexto(cedula);
+        String cedulaVerificada = String.valueOf(cedulaNum);
 
         if (nombre == null || nombre.isBlank())
             throw new IllegalArgumentException("El nombre es obligatorio");
@@ -32,14 +35,31 @@ public class TramiteService {
         if (edad < 18) {
             throw new IllegalArgumentException("El solicitante debe ser mayor de 18 años");
         }
-        TramiteDao.ingresarSolicitante(cedula,nombre,fechaN);
+        TramiteDao.ingresarSolicitante(cedulaVerificada,nombre,fechaN);
         int id_usuario = usuario.getIdUsuario();
         Solicitante solicitante1 = TramiteDao.obtenerSolicitante(cedula);
         int id_solicitante = solicitante1.getIdSolicitante();
 
         TramiteDao.insertarTramite(id_solicitante, licencia, id_usuario);
-
-
+    }
+    public static int convertirTexto(String texto) throws NumberFormatException {
+        return Integer.parseInt(texto);
+    }
+    public static Solicitante buscarPorCedula(String cedula){
+        if (cedula == null || cedula.isBlank()){
+            throw new IllegalArgumentException("La cédula es obligatoria");
+        }
+        int cedulaNum = convertirTexto(cedula);
+        String cedulaVerificada = String.valueOf(cedulaNum);
+        Solicitante solicitante1 = TramiteDao.obtenerSolicitante(cedula);
+        return solicitante1;
 
     }
+
+    public static Tramite obtenerTramiteSolicitante(int idSolicitante){
+        Tramite tramiteRescatado = TramiteDao.obterTramite( idSolicitante);
+        return tramiteRescatado;
+
+    }
+
 }

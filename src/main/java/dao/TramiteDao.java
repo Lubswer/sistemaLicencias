@@ -69,4 +69,37 @@ public class TramiteDao {
         }
 
     }
+    public static Tramite obterTramite(int idSolicitante) {
+
+        String sql = "SELECT * FROM tramite WHERE id_solicitante = ?";
+
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idSolicitante);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Tramite(
+                        rs.getInt("id_tramite"),
+                        rs.getInt("id_solicitante"),
+                        rs.getString("tipo_licencia"),
+                        rs.getString("estado"),
+                        (Boolean) rs.getObject("certificado_medico"),
+                        (Boolean) rs.getObject("pago_ok"),
+                        (Boolean) rs.getObject("multas_ok"),
+                        rs.getString("observaciones"),
+                        (Double) rs.getObject("nota_teorica"),
+                        (Double) rs.getObject("nota_practica"),
+                        rs.getInt("created_by"),
+                        rs.getTimestamp("created_at").toString()
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null; // no existe trámite para ese solicitante
+    }
 }
