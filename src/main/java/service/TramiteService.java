@@ -61,5 +61,8 @@ public class TramiteService {
         return tramiteRescatado;
 
     }
+    public static void generarLicencia(int idTramite,String numeroLicencia, String fechaEmision, String fechaVencimiento,int usarioLogueado){
+
+    }
 
 }

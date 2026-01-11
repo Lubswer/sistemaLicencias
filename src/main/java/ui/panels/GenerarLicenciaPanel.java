@@ -21,14 +21,13 @@ public class GenerarLicenciaPanel extends JPanel {
     private JTextField textField2;
     private JTextField textField3;
     private JLabel nombreLB;
-    private JLabel cedulaLB;
     private JLabel tipoLicenciaLB;
     private JLabel estadoLB;
     private JLabel fechaSolicitudLB;
     private JLabel numeroLicenciaLB;
     private JLabel fechaEmisionLB;
     private JLabel fechaVencimientoLB;
-    private JLabel estado;
+    private JLabel cedulaLB;
 
     public GenerarLicenciaPanel(Usuario usuarioLogueado){
         setLayout(new BorderLayout());
@@ -47,11 +46,35 @@ public class GenerarLicenciaPanel extends JPanel {
                     Solicitante solicitante1 = TramiteService.buscarPorCedula(cedula);
                     Tramite tramiteSolicitante = TramiteService.obtenerTramiteSolicitante(solicitante1.getIdSolicitante());
                     JOptionPane.showMessageDialog(null,"Solicitante encontrado y cargado");
-                    nombreLB.setText("Nombre: " + solicitante1.getNombreSolicitante());
-                    cedulaLB.setText("Cédula: " + solicitante1.getCedulaSolicitante());
-                    tipoLicenciaLB.setText("Tipo Licencia: " + tramiteSolicitante.getTipoLicencia());
-                    estado.setText(tramiteSolicitante.getEstado());
-                    fechaSolicitudLB.setText("Fecha Solicitud: " + tramiteSolicitante.getCreatedAt());
+                    nombreLB.setText(solicitante1.getNombreSolicitante());
+                    cedulaLB.setText(solicitante1.getCedulaSolicitante());
+                    tipoLicenciaLB.setText(tramiteSolicitante.getTipoLicencia());
+                    estadoLB.setText( tramiteSolicitante.getEstado());
+                    fechaSolicitudLB.setText(tramiteSolicitante.getCreatedAt());
+
+                }
+                catch (NumberFormatException nep){
+                    JOptionPane.showMessageDialog(null, "Formato de datos incorrecto");
+                }
+                catch (IllegalArgumentException iae){
+                    JOptionPane.showMessageDialog(null,iae.getMessage());
+                }catch (Exception  ex ){
+                    JOptionPane.showMessageDialog(null,"Error inesperado: " + ex.getMessage());
+                }
+
+            }
+        });
+        generarLicenciaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String cedula = cedulaLB.getText();
+                try{
+                    Solicitante solicitante1 = TramiteService.buscarPorCedula(cedula);
+                    Tramite tramiteSolicitante = TramiteService.obtenerTramiteSolicitante(solicitante1.getIdSolicitante());
+                    TramiteService.generarLicencia(tramiteSolicitante.getIdTramite(),
+                            numeroLicenciaLB.getText(),fechaEmisionLB.getText(),
+                            fechaVencimientoLB.getText(),usuarioLogueado.getIdUsuario());
+                    JOptionPane.showMessageDialog(null,"Licencia Generada Exitosamente!");
 
                 }
                 catch (NumberFormatException nep){
