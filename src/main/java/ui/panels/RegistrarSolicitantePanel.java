@@ -51,6 +51,15 @@ public class RegistrarSolicitantePanel extends JPanel {
                 }
             }
         });
+        limpiarBTN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cedulaTF.setText("");
+                nombreTF.setText("");
+                fechaTF.setText("");
+                tipoLicencia.setSelectedItem("");
+            }
+        });
 
 
 

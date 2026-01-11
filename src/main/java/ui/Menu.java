@@ -34,6 +34,8 @@ public class Menu extends JFrame {
     private JLabel user;
     private JPanel panelCentral;
     private JPanel panelCambio;
+    private JLabel usuarioIngresado;
+    private JLabel panelOption;
 
     public Menu(Usuario usuarioLogueado) {
         setContentPane(PanelAn);
@@ -85,7 +87,10 @@ public class Menu extends JFrame {
 
         SolicitanteButton.addActionListener( e -> {
             cambiarPanelCentral(new RegistrarSolicitantePanel(usuarioLogueado));
+            panelOption.setText("Panel Principal / Registrar Solicitante");
         });
+
+        usuarioIngresado.setText("Usuario: " + usuarioLogueado.getNombre());
 
 
 
