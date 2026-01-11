@@ -1,6 +1,7 @@
 package service;
 import dao.*;
 import dao.UsuarioDao;
+import model.LicenciaModel;
 import model.Solicitante;
 import model.Tramite;
 import model.Usuario;
@@ -61,7 +62,10 @@ public class TramiteService {
         return tramiteRescatado;
 
     }
-    public static void generarLicencia(int idTramite,String numeroLicencia, String fechaEmision, String fechaVencimiento,int usuarioLogueado){
+    public static void generarLicencia(int idTramite,String numeroLicencia, String fechaEmision, String fechaVencimiento,int usuarioLogueadoID, String estadoTramite){
+        if (!estadoTramite.equals("APROBADO")){
+            throw  new IllegalArgumentException("El estado del tramite no ha sido aprobado");
+        }
         //  Validar id del trámite
         if (idTramite <= 0) {
             throw new IllegalArgumentException("Trámite inválido");
@@ -106,9 +110,11 @@ public class TramiteService {
         }
 
         //  Validar usuario logueado
-        if (usuarioLogueado <= 0) {
+        if (usuarioLogueadoID <= 0) {
             throw new IllegalArgumentException("Usuario no válido para generar licencia");
         }
+
+        LicenciaDao.generarLicencia(idTramite,numeroLicencia,fechaEmision,fechaVencimiento,usuarioLogueadoID);
 
 
     }

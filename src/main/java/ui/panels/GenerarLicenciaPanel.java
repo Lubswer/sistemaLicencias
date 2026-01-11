@@ -17,9 +17,9 @@ public class GenerarLicenciaPanel extends JPanel {
     private JLabel iconBuscar;
     private JButton generarLicenciaButton;
     private JButton exportanPDFButton;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
+    private JTextField numeroLicenciaTF;
+    private JTextField fechaEmisionTF;
+    private JTextField fechaVencimientoTF;
     private JLabel nombreLB;
     private JLabel tipoLicenciaLB;
     private JLabel estadoLB;
@@ -68,14 +68,18 @@ public class GenerarLicenciaPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String cedula = cedulaLB.getText();
+                String numeroLicencia = numeroLicenciaTF.getText();
+                String fechaEmision = fechaEmisionTF.getText();
+                String fechaVencimiento = fechaVencimientoTF.getText();
+                int idUsuario = usuarioLogueado.getIdUsuario();
+
                 try{
                     Solicitante solicitante1 = TramiteService.buscarPorCedula(cedula);
                     Tramite tramiteSolicitante = TramiteService.obtenerTramiteSolicitante(solicitante1.getIdSolicitante());
-                    TramiteService.generarLicencia(tramiteSolicitante.getIdTramite(),
-                            numeroLicenciaLB.getText(),fechaEmisionLB.getText(),
-                            fechaVencimientoLB.getText(),usuarioLogueado.getIdUsuario());
+                    int idTramite = tramiteSolicitante.getIdTramite();
+                    String estado = tramiteSolicitante.getEstado();
+                    TramiteService.generarLicencia(0, numeroLicencia,fechaEmision,fechaVencimiento,idUsuario,estado);
                     JOptionPane.showMessageDialog(null,"Licencia Generada Exitosamente!");
-
                 }
                 catch (NumberFormatException nep){
                     JOptionPane.showMessageDialog(null, "Formato de datos incorrecto");
