@@ -89,8 +89,8 @@ public class TramiteDao {
                         (Boolean) rs.getObject("pago_ok"),
                         (Boolean) rs.getObject("multas_ok"),
                         rs.getString("observaciones"),
-                        (Double) rs.getObject("nota_teorica"),
-                        (Double) rs.getObject("nota_practica"),
+                        rs.getDouble("nota_teorica"),
+                        rs.getDouble("nota_practica"),
                         rs.getInt("created_by"),
                         rs.getTimestamp("created_at").toString()
                 );

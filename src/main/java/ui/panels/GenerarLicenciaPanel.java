@@ -58,8 +58,6 @@ public class GenerarLicenciaPanel extends JPanel {
                 }
                 catch (IllegalArgumentException iae){
                     JOptionPane.showMessageDialog(null,iae.getMessage());
-                }catch (Exception  ex ){
-                    JOptionPane.showMessageDialog(null,"Error inesperado: " + ex.getMessage());
                 }
 
             }
@@ -78,8 +76,9 @@ public class GenerarLicenciaPanel extends JPanel {
                     Tramite tramiteSolicitante = TramiteService.obtenerTramiteSolicitante(solicitante1.getIdSolicitante());
                     int idTramite = tramiteSolicitante.getIdTramite();
                     String estado = tramiteSolicitante.getEstado();
-                    TramiteService.generarLicencia(0, numeroLicencia,fechaEmision,fechaVencimiento,idUsuario,estado);
+                    TramiteService.generarLicencia(idTramite, numeroLicencia,fechaEmision,fechaVencimiento,idUsuario,estado);
                     JOptionPane.showMessageDialog(null,"Licencia Generada Exitosamente!");
+                    TramiteService.cambiarEstadoLicencia("LICENCIA_EMITIDA", idTramite);
                 }
                 catch (NumberFormatException nep){
                     JOptionPane.showMessageDialog(null, "Formato de datos incorrecto");

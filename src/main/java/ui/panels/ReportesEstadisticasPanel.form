@@ -48,7 +48,7 @@
                   <text value="Fecha inicio (aaaa-mm-dd): "/>
                 </properties>
               </component>
-              <component id="87071" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="87071" class="javax.swing.JTextField" binding="txtFechaInicio">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -65,7 +65,7 @@
                   <text value="Fecha fin(aaaa-mm-dd): "/>
                 </properties>
               </component>
-              <component id="793f8" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+              <component id="793f8" class="javax.swing.JTextField" binding="txtFechaFin">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -99,7 +99,7 @@
                   <text value="Estado: "/>
                 </properties>
               </component>
-              <component id="54597" class="javax.swing.JComboBox" binding="estadoCB">
+              <component id="54597" class="javax.swing.JComboBox" binding="cmbEstado">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="200" height="-1"/>
@@ -115,6 +115,7 @@
                     <item value="APROBADO"/>
                     <item value="REPROBADO"/>
                     <item value="LICENCIA_EMITIDA"/>
+                    <item value="TODOS"/>
                   </model>
                 </properties>
               </component>
@@ -127,7 +128,7 @@
                   <text value="Tipo de licencia: "/>
                 </properties>
               </component>
-              <component id="abe21" class="javax.swing.JComboBox" binding="tipoLicenciaCB">
+              <component id="abe21" class="javax.swing.JComboBox" binding="cmbTipoLicencia">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="100" height="-1"/>
@@ -170,7 +171,7 @@
                   <text value="Cedula del solicitante: "/>
                 </properties>
               </component>
-              <component id="f19ff" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+              <component id="f19ff" class="javax.swing.JTextField" binding="txtCedula">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>

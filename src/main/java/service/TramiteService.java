@@ -1,11 +1,10 @@
 package service;
 import dao.*;
-import dao.UsuarioDao;
-import model.LicenciaModel;
 import model.Solicitante;
 import model.Tramite;
 import model.Usuario;
 
+import java.security.PublicKey;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -117,6 +116,9 @@ public class TramiteService {
         LicenciaDao.generarLicencia(idTramite,numeroLicencia,fechaEmision,fechaVencimiento,usuarioLogueadoID);
 
 
+    }
+    public static void cambiarEstadoLicencia(String estado, int idTramite){
+        LicenciaDao.actualiarEstado(estado, idTramite);
     }
 
 }

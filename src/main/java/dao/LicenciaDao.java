@@ -1,5 +1,7 @@
 package dao;
 
+import model.Tramite;
+
 import java.sql.*;
 
 public class LicenciaDao {
@@ -27,6 +29,18 @@ public class LicenciaDao {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Error al generar la licencia", e);
+        }
+    }
+    public static void actualiarEstado(String estadoNuevo , int idTramite){
+        String sql = "Update tramite set estado = ? where id_tramite = ?";
+        try(Connection conn = ConexionDB.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)
+        ){
+            ps.setString(1,estadoNuevo);
+            ps.setInt(2,idTramite);
+            ps.executeUpdate();
+        }catch (SQLException sqle){
+            sqle.printStackTrace();
         }
     }
 }
