@@ -104,19 +104,24 @@ public class Menu extends JFrame {
 
         RequisitosButton.addActionListener(e -> {
             cambiarPanelCentral(new VerificarRequisitosPanel());
+            panelOption.setText("Panel Principal / Requisitos Solicitante");
         });
         ExamenesButton.addActionListener(e -> {
             cambiarPanelCentral(new RegistrarExamenesPanel());
+            panelOption.setText("Panel Principal / Examenes");
         });
         UsuariosButton.addActionListener(e -> {
             cambiarPanelCentral(new GestionUsuariosPanel());
+            panelOption.setText("Panel Principal / Gestion Usuarios");
         });
         TramitesButton.addActionListener(e -> {
             cambiarPanelCentral(new GestionTramitesPanel());
+            panelOption.setText("Panel Principal / Gestion Tramites");
         });
 
         EstadisticasButton.addActionListener(e -> {
             cambiarPanelCentral(new ReportesEstadisticasPanel());
+            panelOption.setText("Panel Principal / Reportes y Estadisticas");
         });
         cerrarButton.addActionListener(new ActionListener() {
             @Override
