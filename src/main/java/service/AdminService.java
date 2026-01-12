@@ -1,9 +1,7 @@
 package service;
 import dao.*;
-import model.ReporteTramiteRow;
-import model.Solicitante;
-import model.Tramite;
-import model.Usuario;
+import model.*;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -56,5 +54,9 @@ public class AdminService {
             throw new IllegalArgumentException("Formato inválido en " + campo + " (yyyy-MM-dd)");
         }
     }
+
 }
 // / //////////////////////////////////////////////////////////////////////////////////
+
+
+

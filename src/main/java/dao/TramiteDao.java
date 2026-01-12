@@ -414,6 +414,27 @@ public class TramiteDao {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static void requisitos(int idTramite,boolean CMedico,boolean PRealizado,boolean SMultas,String observaciones,String nuevoEstado) {
         String sql = " UPDATE tramite SET certificado_medico = ?, pago_ok = ?, multas_ok = ?, observaciones = ?,estado = ? WHERE id_tramite = ?";
 
@@ -469,5 +490,122 @@ public class TramiteDao {
         }
         return null;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static Tramite buscarPorIdTramite(int idTramite) {
+
+        String sql = "SELECT * FROM tramite WHERE id_tramite = ?";
+
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idTramite);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Tramite(
+                        rs.getInt("id_tramite"),
+                        rs.getInt("id_solicitante"),
+                        rs.getString("tipo_licencia"),
+                        rs.getString("estado"),
+                        (Boolean) rs.getObject("certificado_medico"),
+                        (Boolean) rs.getObject("pago_ok"),
+                        (Boolean) rs.getObject("multas_ok"),
+                        rs.getString("observaciones"),
+                        rs.getDouble("nota_teorica"),
+                        rs.getDouble("nota_practica"),
+                        rs.getInt("created_by"),
+                        rs.getTimestamp("created_at").toString()
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+    public static Solicitante obtenerSolicitantePorId(int idSolicitante) {
+
+        String sql = "SELECT * FROM solicitante WHERE id_solicitante = ?";
+
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idSolicitante);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Solicitante(
+                        rs.getInt("id_solicitante"),
+                        rs.getString("cedula"),
+                        rs.getString("nombre"),
+                        rs.getDate("fecha_nacimiento").toString()
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
 }

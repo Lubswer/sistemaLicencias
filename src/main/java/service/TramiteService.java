@@ -500,6 +500,39 @@ public class TramiteService {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static void verificacionR(int idTramite, boolean CMedico, boolean PRealizado, boolean SMultas, String observaciones){
         String estado;
         if (CMedico && PRealizado && SMultas){
@@ -532,6 +565,38 @@ public class TramiteService {
                 idTramite,teoria,practica,estado
         );
         return promedio;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static Tramite obtenerTramitePorId(int idTramite) {
+        return TramiteDao.buscarPorIdTramite(idTramite);
+    }
+    public static Solicitante buscarPorIdSolicitante(int idSolicitante) {
+        return TramiteDao.obtenerSolicitantePorId(idSolicitante);
     }
 
 

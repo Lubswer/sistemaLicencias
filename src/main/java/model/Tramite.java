@@ -103,68 +103,95 @@ public class Tramite {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public Tramite(int idTramite, String estado) {
         this.idTramite = idTramite;
         this.estado = estado;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public boolean isCertificadoMedico() {
+        return certificadoMedico;
+    }
+
+    public boolean isPagoRealizado() {
+        return pagoOk;
+    }
+
+    public boolean isSinMultas() {
+        return multasOk;
+    }
+
+    //public String getNumeroLicencia() {
+       // return ;
+    //}
+
+    //public String getFechaEmision() {
+   //     return ;
+  //  }
+
+    //public String getFechaVencimiento() {
+    //    return ;
+    //}
+
 
 }
