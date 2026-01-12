@@ -1,7 +1,9 @@
 package ui.panels;
+import model.LicenciaModel;
 import model.Solicitante;
 import model.Tramite;
 import model.Usuario;
+import service.Exportaciones;
 import service.TramiteService;
 
 import javax.swing.*;
@@ -58,6 +60,8 @@ public class GenerarLicenciaPanel extends JPanel {
                 }
                 catch (IllegalArgumentException iae){
                     JOptionPane.showMessageDialog(null,iae.getMessage());
+                }catch (Exception ex){
+                    JOptionPane.showMessageDialog(null, "Número de cedula no registrado");
                 }
 
             }
@@ -76,7 +80,7 @@ public class GenerarLicenciaPanel extends JPanel {
                     Tramite tramiteSolicitante = TramiteService.obtenerTramiteSolicitante(solicitante1.getIdSolicitante());
                     int idTramite = tramiteSolicitante.getIdTramite();
                     String estado = tramiteSolicitante.getEstado();
-                    TramiteService.generarLicencia(idTramite, numeroLicencia,fechaEmision,fechaVencimiento,idUsuario,estado);
+                    TramiteService.generarLicencia(idTramite, numeroLicencia + "-"+ solicitante1.getIdSolicitante(),fechaEmision,fechaVencimiento,idUsuario,estado);
                     JOptionPane.showMessageDialog(null,"Licencia Generada Exitosamente!");
                     TramiteService.cambiarEstadoLicencia("LICENCIA_EMITIDA", idTramite);
                 }
@@ -89,6 +93,23 @@ public class GenerarLicenciaPanel extends JPanel {
                     JOptionPane.showMessageDialog(null,"Error inesperado: " + ex.getMessage());
                 }
 
+            }
+        });
+
+        exportanPDFButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String cedula = cedulaLB.getText();
+                    Solicitante solicitante1 = TramiteService.buscarPorCedula(cedula);
+                    Tramite tramiteSolicitante = TramiteService.obtenerTramiteSolicitante(solicitante1.getIdSolicitante());
+                    int idTramite = tramiteSolicitante.getIdTramite();
+                    LicenciaModel licenciaObtenida = TramiteService.obtenerLicencia(idTramite, tramiteSolicitante.getEstado());
+                    Exportaciones.exportarLicenciaPDF(licenciaObtenida.getNumeroLicencia(),solicitante1.getNombreSolicitante(),solicitante1.getCedulaSolicitante(),tramiteSolicitante.getTipoLicencia(),licenciaObtenida.getFechaEmision(),licenciaObtenida.getFechaVencimiento());
+                    JOptionPane.showMessageDialog(null, "PDF generado correctamente");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Error al generar PDF: " + ex.getMessage());
+                }
             }
         });
 

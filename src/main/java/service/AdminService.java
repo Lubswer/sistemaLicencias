@@ -42,7 +42,7 @@ public class AdminService {
             }
         }
 
-        // (Opcional) validar cédula si la usas en Ecuador: 10 dígitos
+        // validar cédula  10 dígitos
         if (cedula != null && !cedula.matches("\\d{10}")) {
             throw new IllegalArgumentException("La cédula debe tener 10 dígitos");
         }

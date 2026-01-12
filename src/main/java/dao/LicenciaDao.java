@@ -1,6 +1,6 @@
 package dao;
 
-import model.Tramite;
+import model.*;
 
 import java.sql.*;
 
@@ -19,7 +19,7 @@ public class LicenciaDao {
         ) {
 
             ps.setInt(1, idTramite);
-            ps.setString(2, numeroLicencia);
+            ps.setString(2, numeroLicencia );
             ps.setString(3, fechaEmision);
             ps.setString(4, fechaVencimiento);
             ps.setInt(5, usuarioLogueadoID);
@@ -42,5 +42,40 @@ public class LicenciaDao {
         }catch (SQLException sqle){
             sqle.printStackTrace();
         }
+    }
+    public static LicenciaModel obtenerLicencia(int idTramite) {
+
+        String sql = """
+        SELECT *
+        FROM licencia
+        WHERE id_tramite = ?
+    """;
+
+        try (
+                Connection conn = ConexionDB.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)
+        ) {
+
+            ps.setInt(1, idTramite);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new LicenciaModel(
+                        rs.getInt("id_licencia"),
+                        rs.getInt("id_tramite"),
+                        rs.getString("numero_licencia"),
+                        rs.getDate("fecha_emision").toString(),
+                        rs.getDate("fecha_vencimiento").toString(),
+                        rs.getInt("created_by"),
+                        rs.getTimestamp("created_at").toString()
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener la licencia", e);
+        }
+
+        return null; // el trámite aún no tiene licencia
     }
 }

@@ -2,6 +2,8 @@ package ui.panels;
 
 import model.*;
 import service.AdminService;
+import service.Exportaciones;
+
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +22,7 @@ public class ReportesEstadisticasPanel extends JPanel {
     private JButton limpiarBTN;
     private JButton buscarBTN;
     private JButton exportarCómoCSVButton;
-    private JButton exportarCómoExelButton;
+    private JButton verDetalleBTN;
     private JTable tableReportes;
     private JLabel Ntramites;
     private JLabel Npendientes;
@@ -34,6 +36,12 @@ public class ReportesEstadisticasPanel extends JPanel {
         reportesPanel.setPreferredSize(new Dimension(900, 600));
         add(reportesPanel, BorderLayout.CENTER);
         initTable();
+        Ntramites.setVisible(false);
+        Npendientes.setVisible(false);
+        Nexamenes.setVisible(false);
+        Naprobados.setVisible(false);
+        Nreprobados.setVisible(false);
+        Nemitidas.setVisible(false);
 
 // / //////////////////////////////////////////////////////////////////////////////////
         buscarBTN.addActionListener(new ActionListener() {
@@ -41,14 +49,14 @@ public class ReportesEstadisticasPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    // 1️⃣ Leer filtros desde la UI
+                    // Leer filtros desde la UI
                     String fechaInicio = txtFechaInicio.getText();
                     String fechaFin = txtFechaFin.getText();
                     String estado = cmbEstado.getSelectedItem().toString();
                     String tipoLicencia = cmbTipoLicencia.getSelectedItem().toString();
                     String cedula = txtCedula.getText();
 
-                    // 2️⃣ Llamar al service
+                    // Llamar al service
                     List<ReporteTramiteRow> lista = AdminService.buscarTramitesReporte(
                             txtFechaInicio.getText(),
                             txtFechaFin.getText(),
@@ -57,11 +65,11 @@ public class ReportesEstadisticasPanel extends JPanel {
                             txtCedula.getText()
                     );
 
-                    // 3️⃣ Limpiar tabla
+                    // Limpiar tabla
                     DefaultTableModel model = (DefaultTableModel) tableReportes.getModel();
                     model.setRowCount(0);
 
-                    // 4️⃣ Llenar tabla
+                    // Llenar tabla
                     for (ReporteTramiteRow r : lista) {
                         model.addRow(new Object[]{
                                 r.getIdTramite(),
@@ -73,7 +81,7 @@ public class ReportesEstadisticasPanel extends JPanel {
                                 r.getFechaEmision()
                         });
                     }
-                    // 5️⃣ Calcular estadísticas desde la lista
+                    // Calcular estadísticas desde la lista
                     int total = lista.size();
                     int pendientes = 0;
                     int enExamenes = 0;
@@ -91,7 +99,7 @@ public class ReportesEstadisticasPanel extends JPanel {
                         }
                     }
 
-                    // 6️⃣ Mostrar estadísticas
+                    // Mostrar estadísticas
                     Ntramites.setText(String.valueOf(total));
                     Npendientes.setText(String.valueOf(pendientes));
                     Nexamenes.setText(String.valueOf(enExamenes));
@@ -110,6 +118,47 @@ public class ReportesEstadisticasPanel extends JPanel {
             }
         });
 // / //////////////////////////////////////////////////////////////////////////////////
+        exportarCómoCSVButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try  {
+                    Exportaciones.exportarCSV(tableReportes);
+                    JOptionPane.showMessageDialog(null, "CSV exportado correctamente");
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+        });
+
+        verDetalleBTN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ntramites.setVisible(true);
+                Npendientes.setVisible(true);
+                Nexamenes.setVisible(true);
+                Naprobados.setVisible(true);
+                Nreprobados.setVisible(true);
+                Nemitidas.setVisible(true);
+            }
+        });
+        limpiarBTN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ntramites.setVisible(false);
+                Npendientes.setVisible(false);
+                Nexamenes.setVisible(false);
+                Naprobados.setVisible(false);
+                Nreprobados.setVisible(false);
+                Nemitidas.setVisible(false);
+                txtFechaInicio.setText("");
+                txtFechaFin.setText("");
+                txtCedula.setText("");
+                DefaultTableModel model = (DefaultTableModel) tableReportes.getModel();
+                model.setRowCount(0);
+
+            }
+        });
 
     }
     private void initTable() {
@@ -149,5 +198,6 @@ public class ReportesEstadisticasPanel extends JPanel {
         cm.getColumn(5).setPreferredWidth(130);  // Fecha solicitud
         cm.getColumn(6).setPreferredWidth(130);  // Fecha emisión
     }
+
 
 }

@@ -1,5 +1,6 @@
 package service;
 import dao.*;
+import model.LicenciaModel;
 import model.Solicitante;
 import model.Tramite;
 import model.Usuario;
@@ -63,7 +64,7 @@ public class TramiteService {
     }
     public static void generarLicencia(int idTramite,String numeroLicencia, String fechaEmision, String fechaVencimiento,int usuarioLogueadoID, String estadoTramite){
         if (!estadoTramite.equals("APROBADO")){
-            throw  new IllegalArgumentException("El estado del tramite no ha sido aprobado");
+            throw  new IllegalArgumentException("El estado del tramite no cumple para la Licencia");
         }
         //  Validar id del trámite
         if (idTramite <= 0) {
@@ -119,6 +120,12 @@ public class TramiteService {
     }
     public static void cambiarEstadoLicencia(String estado, int idTramite){
         LicenciaDao.actualiarEstado(estado, idTramite);
+    }
+    public static LicenciaModel obtenerLicencia(int idTramite, String estado){
+        if (!estado.equals("LICENCIA_EMITIDA")){
+            throw  new IllegalArgumentException("La licencia no puede ser exportada sin antes ser emitida");
+        }
+        return LicenciaDao.obtenerLicencia(idTramite);
     }
 
 

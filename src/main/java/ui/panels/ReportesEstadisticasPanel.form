@@ -279,7 +279,7 @@
                 <constraints/>
                 <properties>
                   <background color="-2627081"/>
-                  <font name="Georgia"/>
+                  <font/>
                   <selectionForeground color="-1"/>
                 </properties>
               </component>
@@ -408,7 +408,7 @@
               <text value="-"/>
             </properties>
           </component>
-          <component id="33fc4" class="javax.swing.JButton" binding="exportarCómoExelButton" default-binding="true">
+          <component id="33fc4" class="javax.swing.JButton" binding="verDetalleBTN">
             <constraints>
               <grid row="9" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="200" height="30"/>
@@ -418,7 +418,7 @@
             <properties>
               <background color="-2627081"/>
               <font name="Georgia" size="14"/>
-              <text value="Exportar cómo Exel"/>
+              <text value="VER DETALLE"/>
             </properties>
           </component>
           <component id="bb7bc" class="javax.swing.JButton" binding="exportarCómoCSVButton" default-binding="true">

@@ -114,6 +114,14 @@ public class Menu extends JFrame {
         EstadisticasButton.addActionListener(e -> {
             cambiarPanelCentral(new ReportesEstadisticasPanel());
         });
+        cerrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Adios "+ usuarioLogueado.getUsername()+ " tu sesion ha finalizado");
+                dispose();
+                new LoginFrame();
+            }
+        });
 
 
 

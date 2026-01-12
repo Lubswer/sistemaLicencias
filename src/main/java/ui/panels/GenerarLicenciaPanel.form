@@ -185,7 +185,7 @@
             <properties>
               <font size="14"/>
               <foreground color="-12631739"/>
-              <text value="Fecha Emisión:"/>
+              <text value="Fecha Emisión(aaaa-MM-dd):"/>
             </properties>
           </component>
           <component id="857df" class="javax.swing.JLabel" binding="fechaVencimientoLB">
@@ -195,7 +195,7 @@
             <properties>
               <font size="14"/>
               <foreground color="-12631739"/>
-              <text value="Fecha Vencimiento:"/>
+              <text value="Fecha Vencimiento(aaaa-MM-dd):"/>
             </properties>
           </component>
           <vspacer id="a7251">
