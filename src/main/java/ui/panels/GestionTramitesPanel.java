@@ -36,14 +36,10 @@ public class GestionTramitesPanel extends JPanel {
     private JSpinner spinner2;
     private JLabel lblPromedio;
 
-    // Licencia
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
+
 
     private JButton guardarRequisitosButton;
     private JButton guardarExámenesButton;
-    private JButton generarLicenciaButton;
     private JButton promedioButton;
 
 
@@ -84,7 +80,7 @@ public class GestionTramitesPanel extends JPanel {
 
         guardarRequisitosButton.addActionListener(e -> guardarRequisitos());
         guardarExámenesButton.addActionListener(e -> guardarExamenes());
-        generarLicenciaButton.addActionListener(e -> generarLicencia());
+
     }
 
     private void inicializarTabla() {
@@ -166,25 +162,17 @@ public class GestionTramitesPanel extends JPanel {
             spinner2.setValue(practica);
             lblPromedio.setText(String.format("%.2f", (teoria + practica) / 2));
 
-            // LICENCIA
-            //textField3.setText(t.getNumeroLicencia());
-            //textField4.setText(t.getFechaEmision());
-            //textField5.setText(t.getFechaVencimiento());
 
             // BOTONES
             guardarRequisitosButton.setEnabled(true);
             guardarExámenesButton.setEnabled(t.getEstado().equals("EN_EXAMENES"));
-            generarLicenciaButton.setEnabled(t.getEstado().equals("APROBADO"));
+
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
 
-
-
-
-    // ------------------ GUARDAR ------------------
 
     private void guardarRequisitos() {
         TramiteService.verificacionR(
@@ -207,26 +195,7 @@ public class GestionTramitesPanel extends JPanel {
         cargarTabla();
     }
 
-    private void generarLicencia() {
-        try {
-            TramiteService.generarLicencia(
-                    idTramiteSeleccionado,
-                    textField3.getText(),
-                    textField4.getText(),
-                    textField5.getText(),
-                    1, // idUsuario (puedes luego usar el real)
-                    "APROBADO"
-            );
 
-            TramiteService.cambiarEstadoLicencia("LICENCIA_EMITIDA", idTramiteSeleccionado);
-
-            JOptionPane.showMessageDialog(this, "Licencia generada");
-            cargarTabla();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }
 
 }
 
