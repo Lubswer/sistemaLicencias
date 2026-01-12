@@ -36,6 +36,7 @@ public class Menu extends JFrame {
     private JPanel panelCambio;
     private JLabel usuarioIngresado;
     private JLabel panelOption;
+    private JLabel banerLB;
 
     public Menu(Usuario usuarioLogueado) {
         setContentPane(PanelAn);
@@ -43,6 +44,7 @@ public class Menu extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1300, 720);
+        panelCambio.setPreferredSize(new Dimension(900, 600));
         ImageIcon regSolicitante = new ImageIcon(getClass().getResource("/img/1.png"));
         RegS.setIcon(regSolicitante);
         ImageIcon verRegistro = new ImageIcon(getClass().getResource("/img/2.png"));
@@ -65,6 +67,8 @@ public class Menu extends JFrame {
         GesUs.setIcon(gesus);
         ImageIcon rees = new ImageIcon(getClass().getResource("/img/9.png"));
         ReEs.setIcon(rees);
+        ImageIcon banerIcon = new ImageIcon(getClass().getResource("/img/baner.png"));
+        banerLB.setIcon(banerIcon);
         SolicitanteButton.setBorder(
                 BorderFactory.createMatteBorder(0, 0, 2, 3, Color.white)
         );
