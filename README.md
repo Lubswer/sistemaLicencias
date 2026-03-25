@@ -1,11 +1,13 @@
-#  Sistema de Gestión de Licencias Vehiculares
+# Sistema de Gestión de Licencias Vehiculares
 
 Sistema de escritorio desarrollado en Java (Swing) bajo arquitectura MVC para la gestión integral del ciclo de vida de licencias de conducir (Solicitud, Validación, Exámenes y Emisión).
 
 ---
 
 ## Requisitos del Sistema
+
 Antes de ejecutar el proyecto, asegúrese de tener instalado:
+
 * **Java Development Kit (JDK):** Versión 21 o superior.
 * **Apache Maven:** Para la gestión de dependencias.
 * **Conexión a Internet:** Requerida para conectar con la base de datos en la nube (Railway).
@@ -15,6 +17,7 @@ Antes de ejecutar el proyecto, asegúrese de tener instalado:
 ## Configuración y Variables
 
 ### Base de Datos
+
 El proyecto está configurado por defecto para conectarse a una instancia de **MySQL en Railway**.
 
 * **Archivo de Configuración:** `src/main/java/dao/ConexionDB.java`
@@ -32,18 +35,18 @@ El proyecto está configurado por defecto para conectarse a una instancia de **M
 
 Siga estos pasos para construir el proyecto desde cero:
 
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone <URL_DEL_REPOSITORIO>
-    cd sistema_entrega_licencias
-    ```
+1. **Clonar el repositorio:**
+```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd sistema_entrega_licencias
+```
 
-2.  **Descargar dependencias y compilar:**
-    Ejecute el siguiente comando en la raíz del proyecto (donde está el `pom.xml`) para descargar las librerías (`iText`, `BCrypt`, `FlatLaf`, `MySQL Driver`):
-    ```bash
-    mvn clean install
-    ```
-    *Este comando generará una carpeta `target` con los archivos compilados.*
+2. **Descargar dependencias y compilar:**
+   Ejecute el siguiente comando en la raíz del proyecto (donde está el `pom.xml`) para descargar las librerías (`iText`, `BCrypt`, `FlatLaf`, `MySQL Driver`):
+```bash
+   mvn clean install
+```
+   *Este comando generará una carpeta `target` con los archivos compilados.*
 
 ---
 
@@ -55,18 +58,26 @@ Existen varias formas de levantar la aplicación:
 ```bash
 mvn exec:java -Dexec.mainClass="Main"
 ```
-### Opción B: Ejecutar el JAR 
 
-###  Opción C: Ejecutar el EXE
+### Opción B: Ejecutar el JAR
 
-### Credenciales de Acceso 
+### Opción C: Ejecutar el EXE
 
-### Para las pruebas funcionales, utilice los siguientes usuarios pre-registrados:
+---
 
-###  (ADMIN) --> Alubs     1234
-###  (ANALISTA) --> 
+## Credenciales de Acceso
+
+Para las pruebas funcionales, utilice los siguientes usuarios pre-registrados:
+
+| Rol | Usuario | Contraseña |
+|---|---|---|
+| ADMIN | `Alubs` | `1234` |
+| ANALISTA | _(pendiente)_ | _(pendiente)_ |
+
+---
 
 ## Estructura del Proyecto
+```
 src/main/java
 ├── dao         # Capa de Acceso a Datos (JDBC)
 ├── model       # Entidades y Modelos de Dominio
@@ -74,10 +85,17 @@ src/main/java
 └── ui          # Interfaz Gráfica (Swing + FlatLaf)
     ├── frames  # Ventanas Principales
     └── panels  # Vistas Modulares
+```
 
-## Diseño de prototipo de las pantallas
+---
 
-![WhatsApp Image 2026-01-08 at 13 01 22 (1)](https://github.com/user-attachments/assets/6386e493-56c0-4dfa-8416-da720c1d75fd)
-![WhatsApp Image 2026-01-10 at 10 00 09](https://github.com/user-attachments/assets/398fbc64-f299-49d0-9b23-5f652f08327b)
+## Demo del Sistema
 
+[![Demo del sistema](https://drive.google.com/thumbnail?id=1SNNRbMikOttYbWQWE5IftjskOsissprB&sz=w800)](https://drive.google.com/file/d/1SNNRbMikOttYbWQWE5IftjskOsissprB/view)
 
+---
+
+## Diseño de Prototipo de las Pantallas
+
+![Prototipo 1](https://github.com/user-attachments/assets/6386e493-56c0-4dfa-8416-da720c1d75fd)
+![Prototipo 2](https://github.com/user-attachments/assets/398fbc64-f299-49d0-9b23-5f652f08327b)
