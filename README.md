@@ -91,7 +91,22 @@ src/main/java
 
 ## Demo del Sistema
 
-[![Demo del sistema](https://drive.google.com/thumbnail?id=1SNNRbMikOttYbWQWE5IftjskOsissprB&sz=w800)](https://drive.google.com/file/d/1SNNRbMikOttYbWQWE5IftjskOsissprB/view)
+<div align="center">
+  <a href="https://drive.google.com/file/d/1SNNRbMikOttYbWQWE5IftjskOsissprB/view">
+    <img src="https://drive.google.com/thumbnail?id=1SNNRbMikOttYbWQWE5IftjskOsissprB&sz=w800" alt="Demo del sistema" width="600"/>
+    <br/>
+    <img src="https://img.shields.io/badge/▶%20Ver%20Demo-Click%20aquí-red?style=for-the-badge&logo=google-drive&logoColor=white" alt="Ver demo"/>
+  </a>
+</div>
+```
+
+Esto genera la miniatura del video con un botón rojo debajo que dice **▶ Ver Demo — Click aquí**, dejando claro que es clicable. Se ve así:
+```
+┌─────────────────────────────┐
+│     [miniatura del video]   │
+│                             │
+└─────────────────────────────┘
+     [▶ Ver Demo  Click aquí]
 
 ---
 
