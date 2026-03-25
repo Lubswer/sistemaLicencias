@@ -100,16 +100,6 @@ src/main/java
 </div>
 ```
 
-Esto genera la miniatura del video con un botón rojo debajo que dice **▶ Ver Demo — Click aquí**, dejando claro que es clicable. Se ve así:
-```
-┌─────────────────────────────┐
-│     [miniatura del video]   │
-│                             │
-└─────────────────────────────┘
-     [▶ Ver Demo  Click aquí]
-
----
-
 ## Diseño de Prototipo de las Pantallas
 
 ![Prototipo 1](https://github.com/user-attachments/assets/6386e493-56c0-4dfa-8416-da720c1d75fd)
