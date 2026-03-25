@@ -98,7 +98,7 @@ src/main/java
     <img src="https://img.shields.io/badge/▶%20Ver%20Demo-Click%20aquí-red?style=for-the-badge&logo=google-drive&logoColor=white" alt="Ver demo"/>
   </a>
 </div>
-```
+
 
 ## Diseño de Prototipo de las Pantallas
 
